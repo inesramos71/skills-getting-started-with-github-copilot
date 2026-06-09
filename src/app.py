@@ -38,6 +38,42 @@ activities = {
         "schedule": "Mondays, Wednesdays, Fridays, 2:00 PM - 3:00 PM",
         "max_participants": 30,
         "participants": ["john@mergington.edu", "olivia@mergington.edu"]
+    },
+    "Soccer Team": {
+        "description": "Team practices and matches; open to all skill levels",
+        "schedule": "Mondays and Thursdays, 4:00 PM - 6:00 PM",
+        "max_participants": 25,
+        "participants": ["liam@mergington.edu"]
+    },
+    "Basketball Club": {
+        "description": "Skills training and friendly games",
+        "schedule": "Tuesdays and Thursdays, 5:00 PM - 6:30 PM",
+        "max_participants": 20,
+        "participants": ["noah@mergington.edu"]
+    },
+    "Art Studio": {
+        "description": "Drawing, painting and mixed-media projects",
+        "schedule": "Wednesdays, 3:30 PM - 5:00 PM",
+        "max_participants": 15,
+        "participants": ["ava@mergington.edu"]
+    },
+    "Music Ensemble": {
+        "description": "Instrumental and vocal ensemble rehearsals and performances",
+        "schedule": "Fridays, 3:30 PM - 5:00 PM",
+        "max_participants": 25,
+        "participants": ["isabella@mergington.edu"]
+    },
+    "Math Club": {
+        "description": "Problem solving, contests preparation, and puzzles",
+        "schedule": "Mondays, 4:00 PM - 5:00 PM",
+        "max_participants": 20,
+        "participants": ["sophia@mergington.edu"]
+    },
+    "Debate Team": {
+        "description": "Practice debates, public speaking, and tournaments",
+        "schedule": "Thursdays, 4:00 PM - 5:30 PM",
+        "max_participants": 18,
+        "participants": ["alex@mergington.edu"]
     }
 }
 
@@ -63,7 +99,9 @@ def signup_for_activity(activity_name: str, email: str):
     activity = activities[activity_name]
 
     # Validate student is not already signed up
-    
+    if email in activity["participants"]:
+     raise HTTPException(status_code=400, detail="Student is already signed up")
+
 
     # Add student
     activity["participants"].append(email)
